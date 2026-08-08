@@ -35,11 +35,11 @@ class DatabaseSeeder extends Seeder
                 ['name' => 'Coupe enfant', 'price' => 2500, 'duration' => 30, 'sub_category' => 'Coiffure enfant'],
             ],
             'Barbier' => [
-                ['name' => 'Coupe homme classique', 'price' => 3000, 'duration' => 30, 'image' => 'services/barbier-homme.jpeg'],
-                ['name' => 'Coupe + barbe', 'price' => 5000, 'duration' => 45],
-                ['name' => 'Degrade', 'price' => 4000, 'duration' => 40],
-                ['name' => 'Tresses homme', 'price' => 8000, 'duration' => 60],
-                ['name' => 'Coupe enfant garcon', 'price' => 2500, 'duration' => 25],
+                ['name' => 'Coupe homme classique', 'price' => 3000, 'duration' => 30, 'image' => 'services/barbier-homme.jpeg', 'sub_category' => 'Coupe homme'],
+                ['name' => 'Coupe + barbe', 'price' => 5000, 'duration' => 45, 'sub_category' => 'Coupe homme'],
+                ['name' => 'Degrade', 'price' => 4000, 'duration' => 40, 'sub_category' => 'Coupe homme'],
+                ['name' => 'Tresses homme', 'price' => 8000, 'duration' => 60, 'sub_category' => 'Tresses homme'],
+                ['name' => 'Coupe enfant garcon', 'price' => 2500, 'duration' => 25, 'sub_category' => 'Coupe enfant'],
             ],
             'Maquillage' => [
                 ['name' => 'Maquillage jour', 'price' => 10000, 'duration' => 45, 'image' => 'services/maquillage.jpeg'],
