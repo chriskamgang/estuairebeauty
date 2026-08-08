@@ -15,12 +15,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Admin
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@estuairebeauty.com',
-            'password' => bcrypt('password'),
-            'is_admin' => true,
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@estuairebeauty.com'],
+            ['name' => 'Admin', 'password' => bcrypt('password'), 'is_admin' => true]
+        );
+
+        // Clear existing categories & services for re-seed
+        Service::query()->delete();
+        Category::query()->delete();
 
         // Categories & Services
         $categories = [
@@ -142,12 +144,10 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($days as $day => $isClosed) {
-            BusinessHour::create([
-                'day_of_week' => $day,
-                'open_time' => '08:00',
-                'close_time' => '19:00',
-                'is_closed' => $isClosed,
-            ]);
+            BusinessHour::updateOrCreate(
+                ['day_of_week' => $day],
+                ['open_time' => '08:00', 'close_time' => '19:00', 'is_closed' => $isClosed]
+            );
         }
 
         // Settings
@@ -167,7 +167,10 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($settings as $setting) {
-            Setting::create($setting);
+            Setting::firstOrCreate(
+                ['key' => $setting['key']],
+                ['value' => $setting['value'], 'type' => $setting['type']]
+            );
         }
     }
 }
