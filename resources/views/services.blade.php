@@ -14,122 +14,26 @@
     </div>
 </section>
 
-<style>
-    .carousel-scroll {
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-    .carousel-scroll::-webkit-scrollbar { display: none; }
-    .carousel-card {
-        scroll-snap-align: start;
-        flex-shrink: 0;
-    }
-</style>
-
-<!-- Categories Accordion -->
-<section class="py-16 bg-cream">
-    @php
-        $defaultOpen = 'null';
-        if (request('cat')) {
-            $catIndex = $categories->pluck('slug')->search(request('cat'));
-            if ($catIndex !== false) {
-                $defaultOpen = $catIndex;
-            }
-        }
-    @endphp
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{ openCat: {{ $defaultOpen }} }" x-init="if (openCat !== null) { $nextTick(() => { document.getElementById('cat-{{ request('cat') }}')?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }) }">
-        <div class="space-y-4">
-            @foreach($categories as $index => $category)
+<!-- Categories Grid -->
+<section class="py-20 bg-cream">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($categories as $category)
             @if($category->services->count() > 0)
-            <div id="cat-{{ $category->slug }}" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                {{-- Category header (clickable) --}}
-                <button
-                    @click="openCat = openCat === {{ $index }} ? null : {{ $index }}"
-                    class="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-cream/50 transition-colors duration-200"
-                >
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center shadow-md shadow-gold/20">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
-                        </div>
-                        <div>
-                            <h2 class="font-playfair text-xl md:text-2xl font-bold text-gray-900">{{ $category->name }}</h2>
-                            <p class="text-gray-400 text-sm mt-0.5">{{ $category->services->count() }} prestation{{ $category->services->count() > 1 ? 's' : '' }}</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="text-gold font-semibold text-sm hidden sm:block">
-                            A partir de {{ number_format($category->services->min('price'), 0, ',', ' ') }} FCFA
-                        </span>
-                        <svg
-                            class="w-6 h-6 text-gold transition-transform duration-300"
-                            :class="openCat === {{ $index }} ? 'rotate-180' : ''"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </div>
-                </button>
-
-                {{-- Expandable carousel --}}
-                <div
-                    x-show="openCat === {{ $index }}"
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 max-h-0"
-                    x-transition:enter-end="opacity-100 max-h-[600px]"
-                    x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-start="opacity-100 max-h-[600px]"
-                    x-transition:leave-end="opacity-0 max-h-0"
-                    class="overflow-hidden"
-                >
-                    <div class="px-6 pb-6">
-                        {{-- Swipe hint mobile --}}
-                        <div class="flex items-center justify-end mb-3 text-gray-400 text-xs md:hidden">
-                            <svg class="w-3.5 h-3.5 mr-1 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            Swipez pour voir plus
-                        </div>
-
-                        <div class="carousel-scroll flex gap-4 pb-2">
-                            @foreach($category->services as $service)
-                            <div class="carousel-card w-[260px] md:w-[300px]">
-                                <div class="bg-cream-dark/30 rounded-xl overflow-hidden border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-300">
-                                    {{-- Image --}}
-                                    <div class="h-48 bg-gradient-to-br from-cream to-cream-dark flex items-center justify-center relative overflow-hidden">
-                                        @if($service->image)
-                                        <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                                        @else
-                                        <div class="text-center p-4">
-                                            <svg class="w-16 h-16 text-gold/15 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
-                                            <span class="text-gold/25 text-xs font-playfair mt-2 block">{{ $service->name }}</span>
-                                        </div>
-                                        @endif
-                                        <div class="absolute top-2.5 right-2.5 px-3 py-1 bg-gold text-white text-xs font-bold rounded-full shadow-lg">
-                                            {{ number_format($service->price, 0, ',', ' ') }} FCFA
-                                        </div>
-                                    </div>
-
-                                    {{-- Info --}}
-                                    <div class="p-4">
-                                        <h3 class="font-playfair text-lg font-semibold text-gray-900 mb-2">{{ $service->name }}</h3>
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex items-center text-gray-400 text-sm">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                                {{ $service->duration }} min
-                                            </div>
-                                            <a href="{{ route('reservation') }}" class="inline-flex items-center px-4 py-1.5 border-2 border-gold text-gold font-semibold text-xs rounded-full hover:bg-gold hover:text-white transition-all duration-300">
-                                                Reserver
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
+            <a href="{{ route('services.show', $category->slug) }}" class="group hover-lift bg-white rounded-2xl p-8 text-center border border-gray-100 hover:border-gold/30 shadow-sm hover:shadow-lg transition-all duration-300">
+                <div class="w-16 h-16 mx-auto mb-5 rounded-full gold-gradient flex items-center justify-center shadow-md shadow-gold/20 group-hover:shadow-gold/40 transition-shadow duration-500">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
                 </div>
-            </div>
+                <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">{{ $category->name }}</h3>
+                <p class="text-gray-400 text-sm mb-4">{{ $category->services->count() }} prestation{{ $category->services->count() > 1 ? 's' : '' }}</p>
+                <span class="text-gold font-semibold text-sm">
+                    A partir de {{ number_format($category->services->min('price'), 0, ',', ' ') }} FCFA
+                </span>
+                <div class="mt-4 inline-flex items-center text-gold text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Voir les prestations
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </div>
+            </a>
             @endif
             @endforeach
         </div>

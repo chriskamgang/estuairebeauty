@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 // Front-end
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/services', [ServiceController::class, 'index'])->name('services');
+Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
 Route::get('/galerie', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/reservation', [ReservationController::class, 'create'])->name('reservation');
 Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation.store');

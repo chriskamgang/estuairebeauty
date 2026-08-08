@@ -61,7 +61,7 @@
                 </div>
                 <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">{{ $category->name }}</h3>
                 <p class="text-gray-500 text-sm mb-5">{{ $category->description ?? 'Des prestations de qualite pour sublimer votre beaute' }}</p>
-                <a href="{{ route('services') }}?cat={{ $category->slug }}" class="inline-flex items-center text-gold font-medium text-sm hover:text-gold-dark transition-colors">
+                <a href="{{ route('services.show', $category->slug) }}" class="inline-flex items-center text-gold font-medium text-sm hover:text-gold-dark transition-colors">
                     Decouvrir <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
             </div>
