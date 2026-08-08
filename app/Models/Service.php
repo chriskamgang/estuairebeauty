@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Service extends Model
 {
-    protected $fillable = ['category_id', 'name', 'slug', 'description', 'price', 'duration', 'image', 'is_active', 'order'];
+    protected $fillable = ['category_id', 'sub_category', 'name', 'slug', 'description', 'price', 'duration', 'image', 'is_active', 'order'];
 
     protected $casts = [
         'is_active' => 'boolean',

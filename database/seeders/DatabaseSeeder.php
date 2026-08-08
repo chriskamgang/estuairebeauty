@@ -25,14 +25,14 @@ class DatabaseSeeder extends Seeder
         // Categories & Services
         $categories = [
             'Coiffure' => [
-                ['name' => 'Tresses africaines', 'price' => 15000, 'duration' => 120, 'image' => 'services/hero-coiffure.jpeg'],
-                ['name' => 'Coupe femme', 'price' => 5000, 'duration' => 45],
-                ['name' => 'Coupe homme', 'price' => 3000, 'duration' => 30],
-                ['name' => 'Coupe enfant', 'price' => 2500, 'duration' => 30],
-                ['name' => 'Brushing', 'price' => 5000, 'duration' => 45],
-                ['name' => 'Coloration', 'price' => 15000, 'duration' => 90],
-                ['name' => 'Tissage', 'price' => 10000, 'duration' => 90],
-                ['name' => 'Defrisage', 'price' => 8000, 'duration' => 60],
+                ['name' => 'Tresses africaines', 'price' => 15000, 'duration' => 120, 'image' => 'services/hero-coiffure.jpeg', 'sub_category' => 'Coiffure femme'],
+                ['name' => 'Coupe femme', 'price' => 5000, 'duration' => 45, 'sub_category' => 'Coiffure femme'],
+                ['name' => 'Brushing', 'price' => 5000, 'duration' => 45, 'sub_category' => 'Coiffure femme'],
+                ['name' => 'Coloration', 'price' => 15000, 'duration' => 90, 'sub_category' => 'Coiffure femme'],
+                ['name' => 'Tissage', 'price' => 10000, 'duration' => 90, 'sub_category' => 'Coiffure femme'],
+                ['name' => 'Defrisage', 'price' => 8000, 'duration' => 60, 'sub_category' => 'Coiffure femme'],
+                ['name' => 'Coupe homme', 'price' => 3000, 'duration' => 30, 'sub_category' => 'Coiffure homme'],
+                ['name' => 'Coupe enfant', 'price' => 2500, 'duration' => 30, 'sub_category' => 'Coiffure enfant'],
             ],
             'Barbier' => [
                 ['name' => 'Coupe homme classique', 'price' => 3000, 'duration' => 30, 'image' => 'services/barbier-homme.jpeg'],
@@ -100,6 +100,7 @@ class DatabaseSeeder extends Seeder
             foreach ($services as $service) {
                 Service::create([
                     'category_id' => $category->id,
+                    'sub_category' => $service['sub_category'] ?? null,
                     'name' => $service['name'],
                     'slug' => Str::slug($service['name']),
                     'price' => $service['price'],
