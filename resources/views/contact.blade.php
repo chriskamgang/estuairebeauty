@@ -38,7 +38,7 @@
                             </div>
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-1">Adresse</h3>
-                                <p class="text-gray-500">{{ setting('address', 'Libreville, Gabon') }}</p>
+                                <p class="text-gray-500">{{ setting('address', 'Bafoussam, Cameroun') }}</p>
                             </div>
                         </div>
 
