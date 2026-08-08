@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
                 ['name' => 'Tresses africaines', 'price' => 15000, 'duration' => 120, 'image' => 'services/hero-coiffure.jpeg'],
                 ['name' => 'Coupe femme', 'price' => 5000, 'duration' => 45],
                 ['name' => 'Brushing', 'price' => 5000, 'duration' => 45],
-                ['name' => 'Coloration', 'price' => 15000, 'duration' => 90],
                 ['name' => 'Tissage', 'price' => 10000, 'duration' => 90],
                 ['name' => 'Defrisage', 'price' => 8000, 'duration' => 60],
             ],
@@ -59,6 +58,7 @@ class DatabaseSeeder extends Seeder
                 ['name' => 'Soin barbe complet', 'price' => 5000, 'duration' => 40],
             ],
             'Decoloration' => [
+                ['name' => 'Coloration', 'price' => 15000, 'duration' => 90],
                 ['name' => 'Decoloration complete', 'price' => 15000, 'duration' => 90],
                 ['name' => 'Meches', 'price' => 12000, 'duration' => 75],
                 ['name' => 'Balayage', 'price' => 18000, 'duration' => 100],
