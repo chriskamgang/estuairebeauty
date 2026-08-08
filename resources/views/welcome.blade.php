@@ -46,27 +46,27 @@
             <div class="w-24 h-1 gold-gradient mx-auto rounded-full"></div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            @foreach($categories as $category)
-            <div class="group hover-lift bg-cream rounded-2xl p-8 text-center border border-gray-100 hover:border-gold/30">
+            @foreach($categories->take(8) as $category)
+            <a href="{{ route('services.show', $category->slug) }}" class="group hover-lift bg-cream rounded-2xl p-8 text-center border border-gray-100 hover:border-gold/30 block">
                 <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold/20 to-rose/20 flex items-center justify-center group-hover:from-gold/30 group-hover:to-rose/30 transition-all duration-500">
-                    @if($category->slug == 'coiffure')
-                    <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758A5.002 5.002 0 0112 4a5 5 0 013.879 5.121"/></svg>
-                    @elseif($category->slug == 'maquillage')
-                    <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/></svg>
-                    @elseif($category->slug == 'lace-frontale')
-                    <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75z"/></svg>
-                    @else
                     <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
-                    @endif
                 </div>
                 <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">{{ $category->name }}</h3>
                 <p class="text-gray-500 text-sm mb-5">{{ $category->description ?? 'Des prestations de qualite pour sublimer votre beaute' }}</p>
-                <a href="{{ route('services.show', $category->slug) }}" class="inline-flex items-center text-gold font-medium text-sm hover:text-gold-dark transition-colors">
+                <span class="inline-flex items-center text-gold font-medium text-sm group-hover:text-gold-dark transition-colors">
                     Decouvrir <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </a>
-            </div>
+                </span>
+            </a>
             @endforeach
         </div>
+        @if($categories->count() > 8)
+        <div class="text-center mt-12">
+            <a href="{{ route('services') }}" class="inline-flex items-center px-8 py-3 border-2 border-gold text-gold font-montserrat font-semibold text-sm tracking-wider uppercase rounded-full hover:bg-gold hover:text-white transition-all duration-300">
+                Voir tous les services
+                <svg class="w-4 h-4 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+        </div>
+        @endif
     </div>
 </section>
 
