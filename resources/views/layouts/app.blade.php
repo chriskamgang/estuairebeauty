@@ -4,8 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', setting('site_name', 'Estuaire Beauty')) - Salon de Beauté</title>
-    <meta name="description" content="@yield('description', setting('site_description', 'Estuaire Beauty - Votre salon de beauté haut de gamme'))">
+    <title>@yield('title', setting('site_name', 'Estuaire Beauty')) - Salon de Beaute Premium a Bafoussam</title>
+    <meta name="description" content="@yield('description', setting('site_description', 'Estuaire Beauty - Votre salon de beaute premium a Bafoussam. Coiffure, Maquillage, Lace Frontale, Onglerie, Extensions de cils, Dermopigmentation, Soins & Massage.'))">
+
+    <!-- Open Graph / WhatsApp / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', setting('site_name', 'Estuaire Beauty')) - Salon de Beaute Premium a Bafoussam">
+    <meta property="og:description" content="@yield('description', setting('site_description', 'Votre salon de beaute premium a Bafoussam. Coiffure, Maquillage, Lace Frontale, Onglerie, Extensions de cils, Dermopigmentation & Massage. Reservez en ligne !'))">
+    <meta property="og:image" content="{{ asset('storage/hero/hero-coiffure.jpeg') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="{{ setting('site_name', 'Estuaire Beauty') }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', setting('site_name', 'Estuaire Beauty')) - Salon de Beaute Premium">
+    <meta name="twitter:description" content="@yield('description', setting('site_description', 'Votre salon de beaute premium a Bafoussam. Reservez en ligne !'))">
+    <meta name="twitter:image" content="{{ asset('storage/hero/hero-coiffure.jpeg') }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
