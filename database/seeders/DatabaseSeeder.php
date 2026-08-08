@@ -24,22 +24,42 @@ class DatabaseSeeder extends Seeder
 
         // Categories & Services
         $categories = [
-            'Coiffure' => [
-                ['name' => 'Tresses africaines', 'price' => 15000, 'duration' => 120, 'image' => 'services/hero-coiffure.jpeg', 'sub_category' => 'Coiffure femme'],
-                ['name' => 'Coupe femme', 'price' => 5000, 'duration' => 45, 'sub_category' => 'Coiffure femme'],
-                ['name' => 'Brushing', 'price' => 5000, 'duration' => 45, 'sub_category' => 'Coiffure femme'],
-                ['name' => 'Coloration', 'price' => 15000, 'duration' => 90, 'sub_category' => 'Coiffure femme'],
-                ['name' => 'Tissage', 'price' => 10000, 'duration' => 90, 'sub_category' => 'Coiffure femme'],
-                ['name' => 'Defrisage', 'price' => 8000, 'duration' => 60, 'sub_category' => 'Coiffure femme'],
-                ['name' => 'Coupe homme', 'price' => 3000, 'duration' => 30, 'sub_category' => 'Coiffure homme'],
-                ['name' => 'Coupe enfant', 'price' => 2500, 'duration' => 30, 'sub_category' => 'Coiffure enfant'],
+            'Coiffure femme' => [
+                ['name' => 'Tresses africaines', 'price' => 15000, 'duration' => 120, 'image' => 'services/hero-coiffure.jpeg'],
+                ['name' => 'Coupe femme', 'price' => 5000, 'duration' => 45],
+                ['name' => 'Brushing', 'price' => 5000, 'duration' => 45],
+                ['name' => 'Coloration', 'price' => 15000, 'duration' => 90],
+                ['name' => 'Tissage', 'price' => 10000, 'duration' => 90],
+                ['name' => 'Defrisage', 'price' => 8000, 'duration' => 60],
+            ],
+            'Coiffure homme' => [
+                ['name' => 'Coupe homme classique', 'price' => 3000, 'duration' => 30, 'image' => 'services/barbier-homme.jpeg'],
+                ['name' => 'Degrade', 'price' => 4000, 'duration' => 40],
+                ['name' => 'Coupe + barbe', 'price' => 5000, 'duration' => 45],
+            ],
+            'Tresses hommes' => [
+                ['name' => 'Tresses homme classique', 'price' => 8000, 'duration' => 60],
+                ['name' => 'Tresses collees homme', 'price' => 10000, 'duration' => 75],
+            ],
+            'Pose lace frontale' => [
+                ['name' => 'Pose lace frontale', 'price' => 25000, 'duration' => 120],
+                ['name' => 'Entretien lace frontale', 'price' => 10000, 'duration' => 60],
+                ['name' => 'Retrait lace frontale', 'price' => 5000, 'duration' => 30],
+            ],
+            'Coupe enfant' => [
+                ['name' => 'Coupe enfant fille', 'price' => 2500, 'duration' => 30],
+                ['name' => 'Coupe enfant garcon', 'price' => 2500, 'duration' => 25],
+                ['name' => 'Tresses enfant', 'price' => 5000, 'duration' => 60],
             ],
             'Barbier' => [
-                ['name' => 'Coupe homme classique', 'price' => 3000, 'duration' => 30, 'image' => 'services/barbier-homme.jpeg', 'sub_category' => 'Coupe homme'],
-                ['name' => 'Coupe + barbe', 'price' => 5000, 'duration' => 45, 'sub_category' => 'Coupe homme'],
-                ['name' => 'Degrade', 'price' => 4000, 'duration' => 40, 'sub_category' => 'Coupe homme'],
-                ['name' => 'Tresses homme', 'price' => 8000, 'duration' => 60, 'sub_category' => 'Tresses homme'],
-                ['name' => 'Coupe enfant garcon', 'price' => 2500, 'duration' => 25, 'sub_category' => 'Coupe enfant'],
+                ['name' => 'Rasage classique', 'price' => 2000, 'duration' => 20],
+                ['name' => 'Taille de barbe', 'price' => 2500, 'duration' => 25],
+                ['name' => 'Soin barbe complet', 'price' => 5000, 'duration' => 40],
+            ],
+            'Decoloration' => [
+                ['name' => 'Decoloration complete', 'price' => 15000, 'duration' => 90],
+                ['name' => 'Meches', 'price' => 12000, 'duration' => 75],
+                ['name' => 'Balayage', 'price' => 18000, 'duration' => 100],
             ],
             'Maquillage' => [
                 ['name' => 'Maquillage jour', 'price' => 10000, 'duration' => 45, 'image' => 'services/maquillage.jpeg'],
@@ -47,18 +67,17 @@ class DatabaseSeeder extends Seeder
                 ['name' => 'Maquillage mariee', 'price' => 35000, 'duration' => 90],
                 ['name' => 'Maquillage naturel', 'price' => 8000, 'duration' => 30],
             ],
-            'Lace Frontale' => [
-                ['name' => 'Pose lace frontale', 'price' => 25000, 'duration' => 120],
-                ['name' => 'Entretien lace frontale', 'price' => 10000, 'duration' => 60],
-                ['name' => 'Retrait lace frontale', 'price' => 5000, 'duration' => 30],
-            ],
             'Onglerie' => [
                 ['name' => 'Pose vernis simple', 'price' => 3000, 'duration' => 30],
                 ['name' => 'Pose gel', 'price' => 10000, 'duration' => 60],
                 ['name' => 'Pose capsules', 'price' => 15000, 'duration' => 90],
                 ['name' => 'Nail art', 'price' => 12000, 'duration' => 75, 'image' => 'services/nail-art.jpeg'],
-                ['name' => 'Manucure complete', 'price' => 5000, 'duration' => 45],
-                ['name' => 'Pedicure', 'price' => 7000, 'duration' => 60, 'image' => 'services/pedicure.jpeg'],
+            ],
+            'Soins de visage' => [
+                ['name' => 'Soin visage complet', 'price' => 15000, 'duration' => 60, 'image' => 'services/soins-visage.jpeg'],
+                ['name' => 'Nettoyage de peau', 'price' => 10000, 'duration' => 45, 'image' => 'services/nettoyage-peau.jpeg'],
+                ['name' => 'Masque hydratant', 'price' => 8000, 'duration' => 30],
+                ['name' => 'Peeling visage', 'price' => 12000, 'duration' => 45],
             ],
             'Extensions de cils' => [
                 ['name' => 'Cils Classic', 'price' => 15000, 'duration' => 90, 'image' => 'services/extensions-cils.jpeg'],
@@ -68,18 +87,17 @@ class DatabaseSeeder extends Seeder
                 ['name' => 'Cils Wetset', 'price' => 18000, 'duration' => 100],
                 ['name' => 'Retouche cils', 'price' => 10000, 'duration' => 60],
             ],
-            'Dermopigmentation' => [
+            'Manucure et pedicure' => [
+                ['name' => 'Manucure complete', 'price' => 5000, 'duration' => 45],
+                ['name' => 'Pedicure', 'price' => 7000, 'duration' => 60, 'image' => 'services/pedicure.jpeg'],
+                ['name' => 'Manucure + Pedicure', 'price' => 10000, 'duration' => 90],
+            ],
+            'Microblading' => [
                 ['name' => 'Microblading sourcils', 'price' => 50000, 'duration' => 120, 'image' => 'services/microblading-sourcils.jpeg'],
                 ['name' => 'Dermopigmentation levres', 'price' => 45000, 'duration' => 120, 'image' => 'services/dermopigmentation-levres.jpeg'],
                 ['name' => 'Retouche microblading', 'price' => 25000, 'duration' => 60],
             ],
-            'Soins du visage' => [
-                ['name' => 'Soin visage complet', 'price' => 15000, 'duration' => 60, 'image' => 'services/soins-visage.jpeg'],
-                ['name' => 'Nettoyage de peau', 'price' => 10000, 'duration' => 45, 'image' => 'services/nettoyage-peau.jpeg'],
-                ['name' => 'Masque hydratant', 'price' => 8000, 'duration' => 30],
-                ['name' => 'Peeling visage', 'price' => 12000, 'duration' => 45],
-            ],
-            'Massage & Bien-etre' => [
+            'Massages et relaxation' => [
                 ['name' => 'Massage relaxant', 'price' => 15000, 'duration' => 60, 'image' => 'services/massage-electrostimulation.jpeg'],
                 ['name' => 'Massage dos', 'price' => 10000, 'duration' => 30],
                 ['name' => 'Electrostimulation', 'price' => 12000, 'duration' => 45],
