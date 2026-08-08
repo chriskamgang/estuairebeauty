@@ -31,11 +31,28 @@
 
 <!-- Categories Accordion -->
 <section class="py-16 bg-cream">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{ openCat: null }">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{
+        openCat: null,
+        init() {
+            const params = new URLSearchParams(window.location.search);
+            const cat = params.get('cat');
+            if (cat) {
+                const slugs = @json($categories->pluck('slug')->values());
+                const idx = slugs.indexOf(cat);
+                if (idx !== -1) {
+                    this.openCat = idx;
+                    this.$nextTick(() => {
+                        const el = document.getElementById('cat-' + cat);
+                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    });
+                }
+            }
+        }
+    }">
         <div class="space-y-4">
             @foreach($categories as $index => $category)
             @if($category->services->count() > 0)
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div id="cat-{{ $category->slug }}" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                 {{-- Category header (clickable) --}}
                 <button
                     @click="openCat = openCat === {{ $index }} ? null : {{ $index }}"
