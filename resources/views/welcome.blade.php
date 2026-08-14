@@ -47,15 +47,26 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             @foreach($categories->take(8) as $category)
-            <a href="{{ route('services.show', $category->slug) }}" class="group hover-lift bg-cream rounded-2xl p-8 text-center border border-gray-100 hover:border-gold/30 block">
-                <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold/20 to-rose/20 flex items-center justify-center group-hover:from-gold/30 group-hover:to-rose/30 transition-all duration-500">
-                    <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+            <a href="{{ route('services.show', $category->slug) }}" class="group hover-lift bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gold/30 block shadow-sm hover:shadow-lg transition-all duration-300">
+                <div class="h-44 relative overflow-hidden">
+                    @if($category->cover_image)
+                    <img src="{{ asset('storage/' . $category->cover_image) }}" alt="{{ $category->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    @else
+                    <div class="w-full h-full bg-gradient-to-br from-gold/10 to-rose/10 flex items-center justify-center">
+                        <svg class="w-14 h-14 text-gold/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+                    </div>
+                    @endif
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-3 left-4">
+                        <h3 class="font-playfair text-lg font-bold text-white">{{ $category->name }}</h3>
+                    </div>
                 </div>
-                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">{{ $category->name }}</h3>
-                <p class="text-gray-500 text-sm mb-5">{{ $category->description ?? 'Des prestations de qualite pour sublimer votre beaute' }}</p>
-                <span class="inline-flex items-center text-gold font-medium text-sm group-hover:text-gold-dark transition-colors">
-                    Decouvrir <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
+                <div class="p-4 flex items-center justify-between">
+                    <span class="text-gray-400 text-xs">{{ $category->services->count() }} prestations</span>
+                    <span class="inline-flex items-center text-gold font-medium text-sm group-hover:translate-x-1 transition-transform duration-300">
+                        Decouvrir <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </span>
+                </div>
             </a>
             @endforeach
         </div>

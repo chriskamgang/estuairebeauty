@@ -16,22 +16,35 @@
 
 <!-- Categories Grid -->
 <section class="py-20 bg-cream">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($categories as $category)
             @if($category->services->count() > 0)
-            <a href="{{ route('services.show', $category->slug) }}" class="group hover-lift bg-white rounded-2xl p-8 text-center border border-gray-100 hover:border-gold/30 shadow-sm hover:shadow-lg transition-all duration-300">
-                <div class="w-16 h-16 mx-auto mb-5 rounded-full gold-gradient flex items-center justify-center shadow-md shadow-gold/20 group-hover:shadow-gold/40 transition-shadow duration-500">
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+            <a href="{{ route('services.show', $category->slug) }}" class="group hover-lift bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gold/30 shadow-sm hover:shadow-xl transition-all duration-300">
+                <div class="h-48 relative overflow-hidden">
+                    @if($category->cover_image)
+                    <img src="{{ asset('storage/' . $category->cover_image) }}" alt="{{ $category->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    @else
+                    <div class="w-full h-full bg-gradient-to-br from-gold/10 to-rose/10 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-gold/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+                    </div>
+                    @endif
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-3 left-4 right-4">
+                        <h3 class="font-playfair text-xl font-bold text-white">{{ $category->name }}</h3>
+                    </div>
                 </div>
-                <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">{{ $category->name }}</h3>
-                <p class="text-gray-400 text-sm mb-4">{{ $category->services->count() }} prestation{{ $category->services->count() > 1 ? 's' : '' }}</p>
-                <span class="text-gold font-semibold text-sm">
-                    A partir de {{ number_format($category->services->min('price'), 0, ',', ' ') }} FCFA
-                </span>
-                <div class="mt-4 inline-flex items-center text-gold text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Voir les prestations
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <div class="p-5">
+                    <div class="flex items-center justify-between">
+                        <p class="text-gray-400 text-sm">{{ $category->services->count() }} prestation{{ $category->services->count() > 1 ? 's' : '' }}</p>
+                        <span class="text-gold font-semibold text-sm">
+                            A partir de {{ number_format($category->services->min('price'), 0, ',', ' ') }} FCFA
+                        </span>
+                    </div>
+                    <div class="mt-3 inline-flex items-center text-gold text-sm font-medium group-hover:translate-x-1 transition-transform duration-300">
+                        Voir les prestations
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </div>
                 </div>
             </a>
             @endif

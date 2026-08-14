@@ -107,11 +107,29 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        $coverImages = [
+            'Coiffure femme' => 'covers/coiffure.jpeg',
+            'Coiffure homme' => 'covers/coiffure.jpeg',
+            'Tresses hommes' => 'covers/coiffure.jpeg',
+            'Pose lace frontale' => 'covers/coiffure.jpeg',
+            'Coupe enfant' => 'covers/coupe-enfant.jpeg',
+            'Barbier' => 'covers/coiffure.jpeg',
+            'Decoloration' => 'covers/coiffure.jpeg',
+            'Maquillage' => 'covers/maquillage.jpeg',
+            'Onglerie' => 'covers/onglerie.jpeg',
+            'Soins de visage' => 'covers/soins-visage.jpeg',
+            'Extensions de cils' => 'covers/cils.jpeg',
+            'Manucure et pedicure' => 'covers/manucure-pedicure.jpeg',
+            'Microblading' => 'covers/microblading.jpeg',
+            'Massages et relaxation' => 'covers/massages.jpeg',
+        ];
+
         $order = 0;
         foreach ($categories as $catName => $services) {
             $category = Category::create([
                 'name' => $catName,
                 'slug' => Str::slug($catName),
+                'cover_image' => $coverImages[$catName] ?? null,
                 'order' => $order++,
                 'is_active' => true,
             ]);

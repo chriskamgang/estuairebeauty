@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'slug', 'icon', 'description', 'order', 'is_active'];
+    protected $fillable = ['name', 'slug', 'cover_image', 'icon', 'description', 'order', 'is_active'];
 
     protected $casts = [
         'is_active' => 'boolean',
