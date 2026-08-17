@@ -8,7 +8,7 @@
         </div>
 
         <div class="bg-dark-400 rounded-xl border border-dark-100 p-6">
-            <form action="{{ route('admin.categories.update', $category) }}" method="POST">
+            <form action="{{ route('admin.categories.update', $category) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -22,6 +22,17 @@
                     <label for="description" class="block text-sm font-medium text-gray-300 mb-2">Description</label>
                     <textarea name="description" id="description" rows="3"
                         class="w-full px-4 py-3 bg-dark-300 border border-dark-100 rounded-lg text-white focus:outline-none focus:border-gold">{{ old('description', $category->description) }}</textarea>
+                </div>
+
+                <div class="mb-5">
+                    <label for="cover_image" class="block text-sm font-medium text-gray-300 mb-2">Image de couverture</label>
+                    @if($category->cover_image)
+                        <div class="mb-3">
+                            <img src="{{ asset('storage/' . $category->cover_image) }}" alt="{{ $category->name }}" class="w-40 h-24 rounded-lg object-cover">
+                        </div>
+                    @endif
+                    <input type="file" name="cover_image" id="cover_image" accept="image/*"
+                        class="w-full px-4 py-3 bg-dark-300 border border-dark-100 rounded-lg text-white focus:outline-none focus:border-gold file:mr-4 file:py-1 file:px-4 file:rounded file:border-0 file:bg-gold file:text-dark-500 file:font-semibold file:cursor-pointer">
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 mb-5">
